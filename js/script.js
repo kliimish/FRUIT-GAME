@@ -4,7 +4,7 @@ const btn = document.querySelector(`#btn`);
 const form = document.querySelector(`#form`);
 const output = document.querySelector(`#output`);
 const calcScore = document.querySelector(`#score`);
-let arrayForDisplay = [];
+
 const basket = [];
 const gameFruits = {
   banana: 5,
@@ -30,6 +30,7 @@ const inputChecker = function (array) {
   }
   if (basket.length === 5) {
     alert(`Ok, thats Enough! 😅`);
+    calcScore.style.display = `block`;
   } else {
     let correctInput = formatter(array);
     basket.push(correctInput);
@@ -46,8 +47,6 @@ btn.onclick = function fruitPusher() {
   console.log(correctBasket);
   if (correctBasket === undefined) {
     alert(`Please add fruit names!`);
-  } else if (correctBasket.length > 5) {
-    alert(`Ok thats enough! 😅`);
   } else {
     let text = `<ul>`;
     for (let i = 0; i < correctBasket.length; i++) {
@@ -59,3 +58,5 @@ btn.onclick = function fruitPusher() {
 
   form.elements[`fruitName`].value = " ";
 };
+
+calcScore.onclick = function showScore() {};
