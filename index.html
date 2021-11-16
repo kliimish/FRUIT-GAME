@@ -8,9 +8,23 @@
     <title>Fruit game</title>
   </head>
   <body>
+    <div id="gameRules" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <ul>
+          <h1>Welcome to <span>Fruit Game<span></h1>
+          <li>Wrong guesses gives you 0 score</li>
+          <li>Numbers are not allowed! </li>
+          <li>The same fruit name won't give you more score</li>
+          <li>Max score: 37 points</li>
+          <li>Have fun guessing! 😎</li>
+        </ul>
+      </div>
+    </div>
     <div class="some-bg">
       <div class="some-game-name">
-        <h1>Guess The fruit!</h1>
+        <h1>Guess The fruits!</h1>
       </div>
       <!-- <div class="attr">
         Used photo:<a href="https://www.freepik.com/lifeforstock">
@@ -18,17 +32,26 @@
         >
       </div> -->
     </div>
+    <div class="grid">
+      <form class="form" id="form" onsubmit=" return false">
+        <ul class="list-el">
+          <h2>Enter name of the fruit</h2>
+          <li><input name="fruitName" type="text/number" value="" /></li>
+          <li><button id="btn">Add to basket</button></li>
+        </ul>
+        <div class="output">
+          <p id="output"></p>
+        </div>
+      </form>
 
-    <form id="form" action="" onsubmit=" return false">
-      <label for="fruit">Enter name of the fruit</label>
-      <input name="fruitName" type="text/number" value="" />
-      <button id="btn">Add to basket</button>
-      <div class="output">
-        <p id="output"></p>
-        <button id="score">Show me score</button>
-        <button id="reset">Try again</button>
+      <div class="score">
+        <h2 id="userScore"></h2>
+        <button id="reset">Restart</button>
       </div>
-    </form>
+
+     
+    </div>
+    <!--Grid DIV-->
     <script src="js/script.js"></script>
   </body>
 </html>

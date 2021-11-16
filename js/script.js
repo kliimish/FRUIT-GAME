@@ -1,9 +1,24 @@
 `use stict`;
+
+window.onload = function () {
+  let rules = document.querySelector(`#gameRules`);
+  let span = document.getElementsByClassName("close")[0];
+  rules.style.display = "block";
+  span.onclick = function () {
+    rules.style.display = "none";
+  };
+  window.onclick = function (event) {
+    if (event.target == rules) {
+      rules.style.display = "none";
+    }
+  };
+};
 //Selecting elements
 const btn = document.querySelector(`#btn`);
 const form = document.querySelector(`#form`);
 const output = document.querySelector(`#output`);
-const calcScore = document.querySelector(`#score`);
+const userScore = document.querySelector(`#userScore`);
+const reset = document.querySelector(`#reset`);
 
 const basket = [];
 const gameFruits = {
@@ -15,6 +30,11 @@ const gameFruits = {
   orange: 9,
   apple: 3,
 };
+const score = new Set([]);
+
+function add(accumulator, a) {
+  return accumulator + a;
+}
 
 //Formatē ievaīto tekstu..
 const formatter = function (arg) {
@@ -30,11 +50,9 @@ const inputChecker = function (array) {
   }
   if (basket.length === 5) {
     alert(`Ok, thats Enough! 😅`);
-    calcScore.style.display = `block`;
   } else {
     let correctInput = formatter(array);
     basket.push(correctInput);
-    console.log(basket);
   }
 
   return basket;
@@ -44,7 +62,7 @@ btn.onclick = function fruitPusher() {
   let userInput = form.elements[`fruitName`].value;
 
   const correctBasket = inputChecker(userInput);
-  console.log(correctBasket);
+
   if (correctBasket === undefined) {
     alert(`Please add fruit names!`);
   } else {
@@ -57,6 +75,20 @@ btn.onclick = function fruitPusher() {
   }
 
   form.elements[`fruitName`].value = " ";
+
+  for (const [key, value] of Object.entries(gameFruits)) {
+    if (correctBasket.includes(key)) {
+      score.add(value);
+    } else score.add(0);
+  }
+  console.log(score);
+  let sum = 0;
+  for (const val of score) {
+    sum = sum + val;
+  }
+  userScore.innerHTML = `<small> Your Score:</small> ${sum}`;
 };
 
-calcScore.onclick = function showScore() {};
+reset.onclick = function () {
+  location.reload();
+};
